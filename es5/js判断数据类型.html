@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>判断数据类型</title>
+</head>
+<body>
+    <script>
+        var date = new Date();
+        var array = new Array();
+        var y = new Number(1);
+        console.log(y);
+        console.log(Object.prototype.toString.call(y));
+        function myTypeof(value){
+            return value === null ? 'null' : typeof value;
+            // if(value === null){
+            //     return 'null';
+            // }
+            // return typeof value;
+        }
+        function A(){
+            this.a = 1;
+        }
+        function B(){
+            this.b = 2;
+        }
+        var x = new A();
+        if(x instanceof A){
+            console.log('x is A');
+        }
+        if(x instanceof B){
+            console.log('x is B');
+        }else{
+            console.log('x is not B');
+        }
+        console.log(Object.prototype.toString.call(x));//返回[object,Object] 不能判断自定义的对象类型
+        console.log(x.constructor);//查看x的构造函数
+        if(x.constructor == A){
+            console.log('x is A');
+        }
+        if(x.constructor == B){
+            console.log('x is B');
+        }else{
+            console.log('x is not B');
+        }
+        //能判断所有数据型的函数
+        function Typeof(value){
+            var typeName = Object.prototype.toString.call(value);
+            if(typeName == '[object Object]'){
+                typeName = '[object '+value.constructor.name+"]";
+            }
+            return typeName;
+        }
+    </script>
+</body>
+</html>
