@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>this</title>
+</head>
+<body>
+    <script>
+        // 简单对象调用函数
+        // var x = 2;
+        // var obj = {
+        //     x: 1,
+        //     e: function(){
+        //         console.log(this.x);
+        //     }
+        // }
+        // obj.e();
+        // // 全局下直接使用函数
+        // function e(){
+        //     console.log(this.x);
+        // }
+        // e();//window.e()
+        // //函数对象使用函数
+        // function fn(){
+        //     fn.x = 10;
+        //     fn.e = function(){
+        //         console.log(this.x);
+        //     }
+        //     function e2(){
+        //         console.log(this);
+        //         console.log('e2: '+this.x);
+        //     }
+        //     e2();//window.e2();
+        // }
+        // fn();
+        // fn.e();
+        // // 函数被多个对象使用的情况
+        // var name = 'window';
+        // var objcc = {
+        //     name: 'cc',
+        //     f: f
+        // }
+        // var objtt = {
+        //     name: 'tt',
+        //     f: f
+        // }
+        // function f(){
+        //     console.log(this.name);
+        // }
+        // f();
+        // objcc.f();
+        // objtt.f();
+        // // 进阶理解
+        // var name = 'window';
+        // var objcc = {
+        //     name: 'cc',
+        //     f: f()//window.f()  代码重上到下执行. 运行到这个行，有一个函数执行（有括号）所以会执行函数（毫无疑问）。
+        //             //所以这个函数在全局下执行，由windows调用
+        //             //函数运行没有ruturn值，所以返回值为undefined objcc.f 值为undefined
+        // }
+        // var objtt = {
+        //     name: 'tt',
+        //     f: f
+        // }
+        // function f(){
+        //     console.log(this.name);
+        // }
+        // f();
+        // console.log(objcc.f);//undefined
+        // objcc.f();//所以报错objcc.f 不是一个函数
+        // objtt.f();
+        // // 深入理解
+        // var name = 'window';
+        // var objcc = {
+        //     name: 'cc',
+        //     f: f()//window.f()  代码重上到下执行. 运行到这个行，有一个函数执行（有括号）所以会执行函数（毫无疑问）。
+        //             //所以这个函数在全局下执行，由windows调用 打印window
+        // }
+        // var objtt = {
+        //     name: 'tt',
+        //     f: f
+        // }
+        // function f(){
+        //     console.log(this.name);
+        //     return f;
+        // }
+        // f();
+        // console.log(objcc.f);//函数f()把自身返回 所以此时objcc.f是一个方法可以调用。
+        // objcc.f();
+        // objtt.f();
+
+
+        // // 函数类使用函数
+        // function fn(){
+        //     this.name = 'tt';
+        //     this.e = function(){
+        //         console.log(this.name);
+        //     }
+        // }
+        // var name = 'cc';
+        // fn();//运行fn函数  是由window调用 所以fn函数的this 指向window
+        //     //所以函数运行结果为 window.name = 'tt'  window.e = function(){ console.log(this.name)};
+        //     //就是把 window作用域，也就是全局下 修改name的值， 添加一个方法。
+        // e();
+        // console.log(name);
+        // fn.e();//报错fn.e 不是一个函数 因为此时e是window的方法。
+        // 使用函数类使用函数的this问题
+        function CC(){
+            this.name = 'cc';
+            this.e = function(){
+                console.log(this.name);
+            }
+        }
+        var cc1 = new CC();
+        cc1.name = 'cc1';
+        console.log(cc1.name);
+        cc1.e();
+        var cc2 = new CC();
+        cc2.name = 'cc2';
+        console.log(cc2.name);
+        // 可以通过apply call bind 改变函数的this指向，this指向绑定的参数对象；
+        // 事件函数 this指向DOM对象
+        // 定时器函数 this 指向window
+    </script>
+</body>
+</html>

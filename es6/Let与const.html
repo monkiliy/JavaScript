@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>let与conts</title>
+</head>
+<body>
+    <script>
+        // es6解决es5中存在的问题
+        // let  与  const
+        // 1.作用域的问题
+
+        // 只有函数作用域与全局作用域 没有块级作用域的特点
+
+        // 2.循环中变量的问题
+        // var arr = [];
+        // for(var i = 0; i < 10; i++){
+        //     arr.push(function(){
+        //         console.log(i);
+        //     })
+        // }
+        // arr.forEach(function(value, index, array){
+        //      value();
+        // })
+        
+        // 特点
+        // 块级作用域
+        // {
+        //     var i = 10;
+        //     let msg = 1;
+        // }
+        // console.log(i);
+        // console.log(msg);//报错，msg未定义 遵循会计作用域
+
+        // 注意点
+        // let
+        // 不能变量提升
+        // console.log(i);//undefined 变量提升
+        // var i = 0;
+        // console.log(msg);//报错  变量不能提升
+        // let msg = 1;
+        // 不能重复什么变量
+        // var i = 1;
+        // var i = 10;
+        // console.log(i); // 10 覆盖
+        // let msg = 1;
+        // let msg = 2;//解析的时候就报错 ，msg已经申明过来
+        // console.log(msg);
+
+        // const
+        // const age;//报错 申明常量没有初始化值
+        // 常量不能更改
+        // const age = 10;
+        // age = 20;//报错 常量不能改变
+        // const person = {
+        //     name: 'cc',
+        //     age: 26
+        // }
+        // person.like = 'code';
+        // 暂时性死区TDZ
+        // let i = 0;
+        // {
+        //     console.log(i);//报错 不会打野i = 0；1.因为在块级作用域内声明的变量在这个作用域内都是起作用的，
+        //                                         //2保留var 的函数作用域的变量提示。.
+        //     let i = 1;
+        // }
+        //循环中使用let与const
+        var arr = [];
+        for(var i = 0; i < 10; i++){
+            (function(j){
+                arr.push(function(){
+                    console.log(j);
+                })
+            })(i)
+        }
+        arr.forEach(function(value, index, array){
+             value();
+        })
+        //对比
+        var arr = [];
+        for(let i = 0; i < 10 ; i++ ){
+            arr.push(function(){
+                console.log(i);
+            })
+        }
+        arr.forEach(function(value, index, arr){
+            value();
+        })
+    </script>
+</body>
+</html>

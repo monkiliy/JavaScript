@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>函数的特性</title>
+</head>
+<body>
+    <script>
+        // 变量
+
+        //情况1
+
+        // fn.y = 2;
+        // function fn(a,b){
+        //     fn.x = 1;
+        //     return a + b;
+        // }
+        // console.log(fn.y);
+        // console.log(fn.x);//返回undefined 因为函数还没有运行
+        // console.log(fn.arguments);//返回null
+        // fn();
+        // console.log(fn.x);//函数运行后返回1 能获取到值;
+
+        //情况2
+        
+        // fn.x = 3;
+        // function fn(a,b){
+        //     fn.x = 1;
+        //     return a + b;
+        // }
+        // console.log(fn.x);//返回3 函数未运行，fn.x = 3.
+        // fn();
+        // console.log(fn.x);//返回1 函数运行后。fn.x 的值改变为1
+
+        // 方法
+        
+        // 情况1
+        function fn(a,b){
+            fn.e = function(){
+                alert('ab');
+            }
+        }
+        fn.e();//报错 fn.e 不是一个函数. 因为函数没有运行.
+        //情况2
+        function fn(a,b){
+            fn.e = function(){
+                alert('ab');
+            }
+        }
+        fn();
+        fn.e();//运行成功
+    </script>
+</body>
+</html>

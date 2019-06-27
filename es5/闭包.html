@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>闭包</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <script>
+        //循环中绑定点击事件 有嵌套函数，本质也是一个闭包，只是它只创建了一个闭包对象：最后i = 5；
+        // 点击事件函数使用 i 使用了外部函数变量。点击的时候window对象使用点击事件函数。
+        function setClick(){
+            var oli = document.getElementsByTagName('li');
+            for(var i = 0; i < oli.length; i++){
+                oli[i].onclick = function(){
+                    show(i);
+                }
+            }
+        }
+        setClick();
+        function show(id){
+            console.log('li'+id);
+        }
+        //使用多个闭包函数
+        function setClick(){
+            var oli = document.getElementsByTagName('li');
+            for(var i = 0; i < oli.length; i++){
+                oli[i].onclick = show(i);
+            }
+        }
+        function show(id){
+            return function(){
+                console.log('li'+id);
+            }
+        }
+        setClick();
+        //使用立即执行函数
+        function setClick(){
+            var oli = document.getElementsByTagName('li');
+            for(var i = 0; i < oli.length; i++){
+                (function(j){
+                    oli[j].onclick = function(){
+                        console.log(j);
+                    }
+                })(i)
+            }
+        }
+        setClick();
+        // 使用let块级作用域特点
+        // 普通情况
+
+        // function fn(){
+        //     var a = 1;
+        //     function e(){
+        //         a++;
+        //         console.log('普通函数'+a);
+        //     }
+        //     e();
+        // }
+        // fn();
+        // 闭包
+
+        // function fn(){
+        //     var a = 1;
+        //     function e(){
+        //         a++;
+        //         console.log(a);
+        //     }
+        //     return e;
+        // }
+        // var e = fn();
+        // e();
+        //不用返回值
+        // var fn1;
+        // var fn2;
+        // function fn(){
+        //     var a = 1;
+        //     fn1 = function e(){
+        //         a++;
+        //         console.log(a);
+        //     }
+        //     fn2 = function(){
+        //         a--;
+        //         console.log(a);
+        //     }
+        // }
+        // fn();
+        // fn1();
+        // //闭包函数
+        // function fn(){
+        //     var a = 1;
+        //     function e(){
+        //         a++;
+        //         console.log(a);
+        //     }
+        //     return e;
+        // }
+        // //闭包对象 2个闭包对象互不干扰
+        // var fn1 = fn();
+        // var fn2 = fn();
+        // fn1();
+        // fn1();
+        // fn1();//fn1 a已经是4
+        // fn2();//fn2 a还是2 二者互不干扰，相当于以及简易类， 创建的是一个新的闭包对象
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象，类，原型，原型链，继承</title>
+</head>
+<body>
+    <script>
+        function Country(){
+            this.country = 'china'
+        }
+        var newcountry = new Country;
+        Autor.prototype = newcountry;
+        function Autor(){
+            this.autor = 'cc';
+            console.log(this)
+        }
+        function Book(name, page){
+            this.name = name;
+            this.page = page;
+        }
+        console.log(Book);
+        var bookautor = new Autor;
+        console.log(Object.prototype.toString.call(Book.prototype));
+        console.log((Book.prototype).constructor.name);
+        Book.prototype = bookautor;
+        // console.log(Book.prototype());
+        var book1 = new Book('book1',1);
+        var book2 = new Book('book2',2);
+        var c = Object.getPrototypeOf(book1);
+        console.log(c);
+        console.log(Object.getPrototypeOf(book1));
+        console.log(book1.constructor.name);
+        console.log(book1.prototype)
+        console.log(Book.prototype)
+        console.log(bookautor.isPrototypeOf(book1));
+        console.log(newcountry.isPrototypeOf(book1));
+        console.log(book1.prototype);
+    </script>
+</body>
+</html>

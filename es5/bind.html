@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>bind</title>
+</head>
+<body>
+    <script>
+        function add(x,y){
+            return this.a*x + this.b*y;
+        }
+        var obj = {
+            a: 1,
+            b: 2
+        }
+        obj.e = add.bind(obj,10);
+        console.log(obj.e(20));//因为先前已传入参数10，这个20传入直接赋给第二个参数b
+    </script>
+</body>
+</html>

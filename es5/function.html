@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>function</title>
+</head>
+<body>
+    <script>
+        // <!-- 函数定义的方法 -->
+        function add(a,b){
+            return a+b;
+        }
+        var add1 = function(a,b){
+            return a+b;
+        }
+        var add2 = new Function('a','b','return a + b');
+        console.log(add2(1,2));
+        
+        // 函数嵌套函数使用
+        // 1
+        function fun(){
+            function fun1(){
+                alert('1');
+            }
+        }
+        // fun1();//报错函数fun1未被定义
+        // 2
+        function fun2(){
+            function fun3(){
+                alert('2');
+            }
+            fun3();//这是在fun2中想执行，实际fun3没有执行，因为fun2函数只是定义
+        }
+        fun2();//通过调用fun2函数，后，fun3函数执行；
+
+        // 函数变量
+        // 情况1
+        var x = 5;
+        function fun4(){
+            var y = 1;
+            alert(x);//毫无疑问函数作用域获取全局作用域
+            alert(y);//通过运行fun4可以执行获取的到 y
+        }
+        fun4();
+        // console.log(y);//y没定义 全局作用域获取不到函数作用域定义的变量
+        // 情况2
+        var a = 3;
+        function fun5(){
+            var b = 4;
+            function fun6(){
+                var c = 5;
+                alert(a);
+                alert(b);//函数作用域获取全局作用域变量ok
+            }
+            // alert(c);//报错c未被定义，上一级作用域获取不到，内部下一级作用域变量；领导不关心下一级的详细事情
+            fun6();
+        }
+        fun5();
+        var d = 10;
+        function fun7(){
+            var d = 11;
+            function fun8(){
+                alert(d);//全局作用域有变量d，函数fun7用域有变量d，fun7内部定义fun8，fun8向上找变量d，一级一级往上找，忽略全局变量d，以上一级作用域为主。
+            }
+            fun8();
+        }
+        fun7();
+        var e = 10;
+        function fun9(){
+            function fun10(){
+                alert('e =' + e);
+            }
+            var e = 11;
+            fun10();
+        }//与上面等同以上一级函数为主。
+        fun9();
+
+        // 动态函数有区别
+
+        // return 函数执行
+        var n = 1;
+        function fn(){
+            var n = 2;
+            function e1(){
+                return n;//变量一级一级往上找以上一级为主
+            }
+            return e1();
+        }
+        var fn1 = fn();
+        console.log(fn1)
+        alert(fn1);
+
+        // return 函数方法 与上一哥进行对比
+        var n = 1;
+        function fn2(){
+            var n = 2;
+            function e2(){
+                return n;//变量一级一级往上找以上一级为主
+            }
+            return e2;//返回函数方法 方法就是一个对象，可以返回对象
+        }
+        var fn3 = fn2();
+        console.log(fn3());//返回方法通过括号执行 得到返回值 return n = 2 ；以上一级作用域为主
+        // var fn3 = fn2() 就相当于 下列转换  但是有本质区别 一个是把fn2函数中的e2函数返回出来 调用的是fn2函数中的e2方法，而 fn3直接等于e2函数的方法有很大却别 只是形式相同 
+        var fn3 = function (){
+                return n;//变量一级一级往上找以上一级为主 return n = 1   
+            }
+        console.log(fn3())
+        alert(fn3);
+
+        // 动态函数的区别
+        var m = 1;
+        function fn4(){
+            var m = 2;
+            var e3 = new Function('return m');
+            return e3;
+        }
+        var fn5 = fn4();
+        console.log(fn5());//打印 1  这就是区别所在 以动态函数创建的函数 是有window对象调用创建的
+                            //函数也是对象，以 new 一个函数的形式创建函数 函数是创建在堆，与其他函数并存 同级关系，而不是定义在函数内部
+                            //所以上面例子的 在 fn4中 var e3 = new Function('return m');完全等同于
+                            // 在全局下定义一个e3函数
+        function e3(){
+            return m;
+        }
+        console.log('e3=' + e3()); //ec = 1 在函数内动态创建完全等同于在全局作用域下定义一个函数
+
+        var k = 1;
+        function fn6(){
+            var k = 2;
+            function e4(){
+                return k;
+            }
+            var e5 = new Function('return k');
+            return [e4,e5];
+        }
+        var h = fn6();
+        console.log(h[0]()+','+h[1]());//打印 2 1 ；
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象</title>
+</head>
+<body>
+    <script>
+        // 对象的复制
+        // obj = {
+        //     a: 1,
+        //     b: 2,
+        //     c: 3
+        // }
+        // obj1 = {};
+        // for( var i in obj){
+        //     obj1[i] = obj[i];
+        //     console.log(i);
+        // }
+
+        //对象销毁机制
+        // obj1 = {a:2};
+        // obj2 = {a:1};
+        // obj3 = ojb1;
+        // obj1 = null;
+        // obj3 = null;//那么对象{a:2}在没有变量指向它的时候，在也没人能找到它，就会被销毁.
+        function Book(name, page){
+            this.name = name;
+            this.page = page;
+        }
+        var bookautor = {
+            autor_name: 'cc',
+            autor_age: '25'
+        }
+        console.log(Book.prototype);
+        // Book.prototype = bookautor;
+        var book1 = new Book('book1', 3);
+        var book2 = new Book('book2', 5);
+        // Book.prototype 也是一个变量 是一个对象. 不进行赋值那么就是一个空对象{}
+        var book3 = Object.create(null,{
+            name: {
+                value: 'book3',
+                enumerable: true
+            },
+            page: {
+                value: 3,
+                enumerable: true
+            }
+        })
+    </script>    
+</body>
+</html>

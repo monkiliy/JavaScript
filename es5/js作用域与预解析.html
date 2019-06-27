@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>预解析</title>
+</head>
+<body>
+    <script>
+        // var x ;
+        // function add(){};
+        // console.log('x = '+ x);
+        // var x = 1;
+        // add();//函数也是变量
+        // function add(){
+        //     console.log('add');
+        // }
+        // function fn(){
+        //     //函数作用域 预解析
+        //     y = 1;//局部变量
+        //     var y = 2;
+        //     console.log('y = ' + y);
+        // }
+        // fn();
+        // console.log(y);//y undefined
+        // function fn(){
+        //     var y;//预解析
+        //     y = 1;
+        //     var y = 2;
+        //     cnsole.log('y =' + y);
+        // }
+        // var y = 1;
+        // function fn(){
+        //     y = 10;
+        // }
+        // fn();
+        // console.log(y);
+        // fn();
+        // 预解析 var y；函数未执行。我觉得没有这一步 因为打印y是未定义
+        // function fn(){
+        //     y = 10;
+        // }
+        // console.log(y);
+        // function fn(){
+        //     function fn1(){
+        //         alert(e);
+        //     }
+        //     console.log(e);
+        //     fn1();
+        //     var e = 11;
+        // }
+        // fn();
+    </script>
+</body>
+</html>
