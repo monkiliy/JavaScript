@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>属性</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            x: 1,
+            y: {
+                x : 1,
+                y : {
+                    x : 2
+                }
+            }
+        }
+        Object.defineProperty(obj,'z',{
+            value: 'z',
+            writable: false,
+            enumerable: false,
+            configurable: true
+        })
+        for( var i in obj){
+            console.log(i);
+        }
+        Object.defineProperties(obj,{
+            z : {
+                value : 2,
+                writable : true,
+                enumerable : true,
+                configurable : false
+            },
+            c : {
+                value : 5,
+                writable : true,
+                enumerable : true,
+                configurable : false
+            }
+        })
+        Object.getOwnPropertyDescriptor(obj,'z');
+        var obj = {
+            boy : 10,
+            girl : 8,
+            allmoney : 0
+        }
+        Object.defineProperty(obj,'onemoney',{
+            set : function(money){
+                this.allmoney = money * (this.boy + this.girl);
+            },
+            get : function(){
+                return this.allmoney;
+            }
+            
+        })
+    </script>
+</body>
+</html>

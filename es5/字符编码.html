@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字符编码</title>
+</head>
+<body>
+    <script>
+        // str = 'cc爱tt';//charCodeAt 能把字符串转换为字符编码
+        // console.log(str.charCodeAt(0));//数字代表字符串的索引
+        // console.log(str.charCodeAt(1));
+        // console.log(str.charCodeAt(2));
+        // console.log(str.charCodeAt(3));
+        // console.log(str.charCodeAt(4));
+        // var arr = [];
+        // for(var i = 0; i < str.length; i++){
+        //     arr.push(str.charCodeAt(i));
+        // }
+        // console.log(arr);
+        // var s = arr.join(',');
+        // console.log(s);
+        // console.log(typeof s);
+        // console.log(String.fromCharCode(arr.join(',')));
+        // console.log(String.fromCharCode(99, 99, 29233, 116, 116));
+        // var str = 'cc爱tt';
+        // var len = str.length;//字符串的长度
+        // var len1 = 0;//字节长度
+        // for(var i = 0; i < len; i++){
+        //     if(str.charCodeAt(i) > 255){
+        //         len1 += 2;//大于255表明使用unicode编码
+        //     }else{
+        //         len1 += 1;//小于等于255使用ASCII编码
+        //     }
+        // }
+        // console.log(len);//5
+        // console.log(len1);//6 应为 '爱' 使用2个字节存储
+        // var str = 'cc爱tt,cc爱tt,cc爱tt';//长度17
+        //      // = '01 23456789'
+        //              //    cc 
+        // var index = str.lastIndexOf('cc',7);//是如何比较的呢
+        // console.log(index);
+        // // 从第7个索引开始:把想查询的字符串（cc）的第一个字符放在查询的索引7的位置，从后往前移动开始比对 所以上例 刚开始是7,8索引的'c爱'与'cc'对比，从后往前移动一位，相同了，返回值是6 
+        // var str = 'cc爱tt,cc爱tt,cc爱tt';
+        // console.log(str.slice(5,1));//返回为空
+        // console.log(str.substring(5,1));//返回 c爱tt 即从 1 到 5 截取
+        // console.log(str.slice(2,-1));// 返回 爱tt,cc爱tt,cc爱t 即从索引为2开始截取到倒数第一位，左闭又开 不包括-1位（倒数第一位）
+        // console.log(str.substring(2,-1));//返回 cc 想当于 从0 到 2 截取2位 等同于下面
+        // console.log(str.substring(0,2));
+        // var arr = ['a',2,4,false];
+        // console.log(arr.join());
+        // console.log(arr.join(''));
+        // var str = 'cc爱tt,cc爱tt,cc爱tt';
+        // console.log(str.split(','));
+        // console.log(str.split('爱'));
+        // var s = 'asd asdf sdfa asdf'
+        // console.log(s.split(' '));//以空格分割
+        // URL编码
+        // https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E7%94%B7%E7%AF%AE%E9%A6%96%E6%89%B9%E8%A3%81%E5%91%98
+        var url = 'https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E7%94%B7%E7%AF%AE%E9%A6%96%E6%89%B9%E8%A3%81%E5%91%98';//url地址字符串
+        var unicode = 'https://www.baidu.com/s?wd=中国男篮首批裁员';
+        var s = encodeURI(unicode);
+        console.log(s);
+        var u = decodeURI(s);
+        console.log(u);
+        var c = encodeURIComponent(u);
+        console.log(c);
+    </script>
+</body>
+</html>
