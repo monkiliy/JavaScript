@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象</title>
+</head>
+<body>
+    <script>
+        // 新的对象字面量特性
+        /* // 1.方法的定义
+        let obj = {
+            a: 1,
+            show : function(){
+                console.log('show');
+            }
+        }
+        obj.show();
+        let obj1 = {
+            a: 1,
+            show(){
+                console.log(this);//ojb1
+                console.log('show');
+            },
+            eat: () => {
+                console.log(this);//window
+                console.log('eat')
+            }//注意使用箭头函数，与上面简写函数是不一样的 this指向不同
+        }
+        obj1.show();
+        obj1.eat(); */
+
+/*         // 2.属性的缩写
+        let a = 1,
+            b = 2,
+            c = 3;
+        let obj = {
+            a,
+            b,
+            c
+        }
+        console.log(obj.a,obj.b,obj.c); */
+
+/*         // 3.计算字面量
+        let obj = {
+            a : 2,
+            b : 3,
+            c : 10
+        }
+        console.log(obj.a);
+        //console.log(obj[a]);//报错，用中括号去取属性名的值，必须用字符串 此处的a 解析为一个变量a
+        console.log(obj['a']);
+
+        // 计算字面量
+        let c = 'name'
+        let obj1 = {
+            [c] : 'ljh',
+            [c + 1] : 'lyy'
+        }
+        console.log(obj1);
+        console.log(obj1[c]);
+        console.log(obj1.name);
+        console.log(obj1[c + 1]);
+        console.log(obj1.name1) */
+
+        // 新增对象的方法
+/*         // 1.object.is() 判断是否相等
+        console.log(Object.is(1,1));
+        console.log(Object.is(1,'1'));
+        // 有点像 ===
+        // 区别 1
+        console.log(NaN === NaN);// false
+        console.log(Object.is(NaN,NaN));// true
+        // 区别 2
+        console.log(-0 === +0);// true
+        console.log(Object.is(-0,+0));// false
+        // 科学计算，精准计算
+        console.log(1/-0);// -infinity
+        console.log(1/+0);// +infinity
+
+        // es5实现
+        function isEq(a,b){
+            if( a !== a){
+                return b !== b;
+            }
+        }
+        console.log(isEq(NaN,NaN)); */
+
+       /*  // 2.Object.setPrototypeOf(obj,obj1) 设置obj的原型为obj1
+        let obj = {
+            a : 2,
+            c : 3,
+            d : 'cc'
+        }
+        let obj1 = {
+            b : 'tt'
+        }
+        // 设置原型 方法 1
+        // Object.setPrototypeOf(obj,obj1);
+
+        // 方法 2
+        //obj.__proto__ = obj1; // 也能设置原型 但是__proto__ 是内置属性， 不是es标准
+
+        // 方法 3 缺陷，不能再次设置obj2的原型
+        var obj2 = Object.create(obj);// ojb2 的原型是 obj
+        console.log(obj2.a);
+        console.log(obj2.__proto__);
+        console.log(Object.getPrototypeOf(obj2)); */
+
+        /* // 3. Object.assign(obj,obj1,obj2); 合并对象，把obj1，obj2对象的属性都合并到obj上
+        let obj = {
+            name : 'ljh'
+        }
+        let obj1 = {
+            a : 1
+        }
+        let obj2 = {
+            b : 2
+        }
+        let obj3 = {
+            c : 3
+        }
+        let obj4 = {
+            d : 4
+        }
+        //注意点，1. 复制对象属性，只能复制自身的可枚举可遍历的属性
+        Object.defineProperty(obj2,'e',{
+            value : 5,
+            enumerable : false
+        })
+        console.log(obj2.e);
+        Object.setPrototypeOf(obj2,obj4);
+        Object.assign(obj,obj1,obj2,obj3);
+        console.log(obj);//没有e属性
+
+        // 注意点 2. 复制对象是一个一个复制的有顺序
+        let obj5 = {
+            a : 'x',
+            b : 'y',
+            c : 'z'
+        } 
+        Object.assign(obj,obj1.obj2,obj3,obj5);
+        console.log(obj);//obj5的属性把前面的都覆盖了
+
+        // 注意点 3. 是浅拷贝 */
+
+        // 使用场景
+
+        /* // 1. 复制对象
+        let obj = {
+            a : 'cc',
+            b : 'tt'
+        }
+        let obj1 = Object.assign({},obj);
+        console.log(obj1); */
+        
+       /*  // 2. 添加原型方法
+        function Person(){
+            this.name = 'cc';
+            this.age = 10;
+            console.log(this);
+        }
+        var person1 = new Person();
+        Person.prototype.show = function(){
+            console.log('show');
+        }
+        Person();
+        console.log(person1);
+        person1.show();
+        Object.assign(Person.prototype,{
+            eat(){
+                console.log('eat');
+            },
+            bark(){
+                console.log('bark')
+            }
+        })
+        var person2 = new Person();
+        person2.eat();
+        person2.bark(); */
+
+        // let obj1 = {
+        //     a : 1
+        // }
+        // let obj2 = {
+        //     b : 2
+        // }
+        // Object.setPrototypeOf(obj1,obj2);
+        // console.log(obj1);
+        // for(var i in obj1){
+        //     console.log(i);
+        // }
+
+        // 3.默认参数
+        const defaults = {
+            a : 1,
+            b : 3
+        }
+        function fn(options){
+            var realOptions = Object.assign({},defaults,options);
+            console.log(realOptions);
+        }
+        fn({
+            a : 3,
+            b : 5
+        })
+        fn();//不传入参数，函数也能运行
+
+        // 新增方法
+        // Object.keys();
+        // Object.values();
+        // Object.entries();
+
+        let obj = {
+            a : 2,
+            b : 3,
+            c : 7
+        }
+        console.log(Object.keys(obj));
+        console.log(Object.values(obj));
+        console.log(Object.entries(obj));
+    </script>
+</body>
+</html>

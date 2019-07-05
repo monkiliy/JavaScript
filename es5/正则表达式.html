@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正则</title>
+</head>
+<body>
+    <script>
+        // var s = 'sklj fkajsd lkfjklj asjdf'
+        // // 字符范围
+        // s.match(/[a-z0-9]/);//a-z或0-9只要有一个字符满足就返回 只查找一个字符
+        // s.match(/[a-z 0-9]/);//空格生效，a-z 或 空格 或 0-9 会查找到空格
+        // s.match(/[^asd]/);// ^ 表示取反 除了a或s或d 的其他的都能查找到 只查找一个字符 
+        // // 逻辑或
+        // s.match(/fsdfk|fka/);
+        // var x = 10;
+        // console.log(x.toString());
+        var isPalindrome = function(x) {
+            if(x == null){
+                return;
+            }
+            if(x < 0){
+                return false;
+            }else if(x == 0){
+                return true;
+            }else{
+                x = x.toString();
+                if(x.length%2 == 0){
+                    var mid = x.length/2;
+                    for(var i = 0; i < mid; i++){
+                        if(x.charCodeAt(i) != x.charCodeAt(mid*2 - 1 - i)){
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    }
+                }else{
+                    var mid = (x.length + 1)/2;
+                    for(var i = 0; i < mid - 1; i++){
+                        if(x.charCodeAt(i) != x.charCodeAt(mid*2 - 2 - i)){
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        var lengthOfLastWord = function(s) {
+            if(s == null){
+                return 0
+            }else if(s.match(/ \w*$/) != null){
+                return s.match(/ \w*$/)[0].length - 1;
+            }else{
+                s = s.match(/.*/);
+                return s[0].length;
+            }
+        };
+    </script>
+</body>
+</html>

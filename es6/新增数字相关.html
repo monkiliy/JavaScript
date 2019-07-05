@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数字</title>
+</head>
+<body>
+    <script>
+        let num = 0x10;//16进制
+        let num1 = 0b10;//2进制 binary
+        let num2 = 0o10;//8进制 
+        console.log(num,num1, num2);
+
+        // 以前方法的移植
+        console.log(isNaN('a'));//ture 会把传入的值进行强制转换 再判断
+        console.log(Number.isNaN('a'));// false 移植到Number对象下 只要传入的不是一个数字 直接返回 false
+
+        console.log(isFinite(Infinity));
+        console.log(isFinite(-Infinity));
+        console.log(isFinite(NaN));//都返回false
+        console.log(isFinite('123'));// true
+        console.log(Number.isFinite('123')); // false 不是一个数字 直接返回false
+        console.log(Number.isFinite('asdf'));//return false 
+    </script>
+</body>
+</html>
