@@ -64,7 +64,7 @@
         // 3.不能使用arguments
         // 4.不能使用构造函数
 
-        // 1.借用父级作用域
+      /*   // 1.借用父级作用域
         let obj = {
             init: function(){
                 document.addEventListener('click',(e) => {
@@ -76,7 +76,7 @@
                 console.log(value);
             }
         }
-        obj.init();
+        obj.init(); */
 
         // 2.不能改变this指向
         let obj1 = {
@@ -89,7 +89,7 @@
         obj1.init.bind(obj1)();//window 不能通过call bind apply 改变this指向
         // new obj1.init();//报错 不能使用构造函数
 
-        // 解决this指向问题 方法 1
+/*         // 解决this指向问题 方法 1
         let obj = {
             init: function(){
                 let _this = this;
@@ -116,7 +116,7 @@
                 console.log(value);
             }
         }
-        obj.init();
+        obj.init(); */
     </script>
 </body>
 </html>

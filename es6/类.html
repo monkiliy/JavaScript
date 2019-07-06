@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>类</title>
+</head>
+<body>
+    <script>
+        /* // es5类
+        function Dog(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        Dog.prototype.bark = function(){
+            console.log('我是'+this.name);
+        }
+        let lili = new Dog('lili',1);
+        const wancai = new Dog('wancai',3);
+        console.log(lili);
+        console.log(wancai);
+        for(var i in lili){
+            console.log(i);
+        }
+        // var a = new Dog.bark();
+        // console.log(a);不能使用new调用类的方法 */
+
+        /* // es6
+        class Person {
+            constructor(name,age){//必须用constructor(){}这种形式
+                this.name = name;
+                this.age = age;
+            }//不要用逗号， 这不是对象
+            talk(){
+                console.log('hello,我是' + this.name);
+            }
+        }
+        let xiaoming = new Person('xiaoming',18);
+        console.log(typeof Person);//function
+        for(var i in xiaoming){
+            console.log(i);//不能遍历方法
+        } */
+
+        // 使用类的注意点
+        // 1.类声明不会变量提升
+        // 2.类申明代码自动运行在严格模式下
+        // 3.调用类必须使用new
+        // 4.类中的所有方法不可枚举
+        // 5.类的方法不可通过new调用
+        // 6.在类中重写类名报错
+
+/*         // 使用es5语法实现
+        const Person1 = (function(){
+            'use strict'
+            const Person1 = function(name, age){
+                if(!(this instanceof Person1)){
+                    throw new Error('必须使用new调用')
+                }
+                this.name = name;
+                this.age = age;
+            }
+            Object.defineProperty(Person1.prototype,'talk',{
+                value : function(){
+                    if(this instanceof Person1.prototype.talk){
+                        throw new Error('不能使用new调用');
+                    }
+                    console.log(`我是${this.name}`);
+                },
+                enumerable : false
+            })
+            return Person1;
+        })()
+        var person2 = new Person1('cc',23); */
+
+        function A(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        A.prototype.show = function(){
+            console.log('show');
+        }
+        var a = new A('cc',1);
+        Object.setPrototypeOf(a,{
+            eat:function(){
+                console.log('eat');
+            }
+        })
+        a.eat();
+        a.__proto__ = {
+            show1 : function(){
+                console.log('show1');
+            }
+        }
+        console.log(A.prototype);
+        console.log(Object.getPrototypeOf(a));
+        // a.prototype.show1 = function(){
+        //     console.log('show me');
+        // }
+
+        var b = {
+            x : 'x'
+        }
+        b.prototype = {
+            show : function(){
+                console.log('show'); 
+            }
+        }
+        b.prototype.eat = function(){
+            console.log('eat b');
+        }
+        console.log(b.prototype);
+        // b.eat();
+
+        // 类表达式
+
+        const Cat = class{
+            constructor(name){
+                this.name = name;
+            }
+        }
+        var keke = new  Cat('keke');
+
+        // 类为一等公民
+        // 1.可以作为参数传给函数
+        // 2.能作为函数返回值
+        // 3.能给变量赋值
+
+        // 静态方法 static
+        // get set 
+        const Pig = class{
+            constructor(name,age){
+                this.name = name;
+                this.age = age;
+            }
+            show(){
+                console.log('show')
+            }
+            static showInfo(){
+                console.log('这是一只猪');
+            }
+            get info(){
+                 return `我是${this.name},我${this.age}岁了`;
+            }
+            set niceName(value){
+                this.goodname = value;
+            }
+            get niceName(){
+                return this.goodname;
+            }
+        }
+        const pig1 = new Pig('peiqi',2);
+        
+    </script>
+</body>
+</html>
