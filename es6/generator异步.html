@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>generator</title>
+</head>
+<body>
+    <script>
+        // co库 thunk库自动执行 generator异步
+    function fakeAjax(data,ms){
+        return new Promise((resolved)=>{
+            setTimeout(()=>{
+                resolved(data);
+            },ms)
+        })
+    }   
+
+    // generator 函数
+    // function * gene(){
+    //     let data = yield fakeAjax('hi',1000);
+    //     console.log(data);
+    //     let data1 = yield fakeAjax('hello',2000);
+    //     console.log(data1);
+    //     let data2 = yield fakeAjax('ljh',1000);
+    //     console.log(data2);
+    // }
+    // async 异步自执行
+    async function  gene(){
+        let data = await fakeAjax('hi',1000);
+        console.log(data);
+        let data1 = await fakeAjax('hello',2000);
+        console.log(data1);
+        let data2 = await fakeAjax('ljh',1000);
+        console.log(data2);
+    }
+    gene();
+    console.log('不阻塞')
+    /* let iter = gene();
+    iter.next().value.then((data)=>{
+        iter.next(data).value.then((data)=>{
+            iter.next(data);
+        })
+    }) */
+
+/*     // generator自动执行函数
+    function run(gene){
+        let g = gene();
+        function next(data){
+            let res = g.next(data);
+            if(res.done) return;
+            res.value.then((data)=>{
+                next(data);
+            })
+        }
+        next();
+    }
+    run(gene);
+
+    for(var y of gene()){
+        console.log(y);
+    }
+    // for(var y of gene){ gene is not iterator
+    //     console.log(y)
+    // } */
+
+    // es2017 新增自动执行异步语法 async await
+    async function fn(){
+        await setTimeout(()=>{
+            console.log('a')
+        },1000);
+        await setTimeout(()=>{
+            console.log('b')
+        },2000);
+        await setTimeout(()=>{
+            console.log('c')
+        },3000);
+        await setTimeout(()=>{
+            console.log('d')
+        },1000);
+    }
+    fn();
+    </script>        
+</body>
+</html>

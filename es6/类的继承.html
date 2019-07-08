@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>类的继承</title>
+</head>
+<body>
+    <script>
+        /* function Animal(name){
+            this.name = name;
+            this.thirsty = 100;
+            this.food = [];
+        }
+        Animal.prototype.drink = function(){
+            return this.thirsty -= 10;
+        }
+        Animal.prototype.eat = function(item){
+            this.food.push(item)
+        }
+        function Dog(name,breed){
+            Animal.call(this,name);
+            this.breed = breed;
+        }
+        
+        //Dog.prototype = Animal.prototype
+        // Dog.prototype = Animal.prototype才能继承Animal类上的原型方法 但是存在问题
+        // 1.Dog的实例的constructor指向Animal这个类，本来应该指向Dog这个类
+        // 解决方法
+        //Dog.prototype.constructor = Dog;//但是 Dog.prototype 与 Anima.prototype 指向同一片内存空间。那么Animal的实例的原型也就指向了Dog
+
+        // 总体解决方法
+        Dog.prototype = Object.create(Animal.prototype);//Dog.prototype 指向一个空对象，这个空对象的原型是Animal.prototype 
+        Dog.prototype.constructor = Dog;// 然后修改Dog.prototype.constructor = Dog  不再是同一片内存空间，不再影响
+
+        Dog.prototype.bark = function(){
+            console.log('这是一条狗');
+        }
+        let wangcai = new Dog('wangcai','田园犬');
+ */
+
+        // es6类的继承
+        class Animal {
+            constructor(name){
+                this.name = name;
+                this.thirsty = 100;
+                this.food = [];
+            }
+            drink(){
+                return this.thirsty -= 10;
+            }
+            eat(item){
+                this.food.push(item);
+            }
+            static info(){
+                console.log('我是一个静态方法');
+            }
+        }
+        class Dog extends Animal{
+            constructor(name,breed){
+                super(name);
+                this.breed = breed;
+            }
+            bark(){
+                console.log('狗在叫');
+            }
+        }
+        let wangcai = new Dog('wangcai','田园犬');
+
+        // 静态方法的继承  子类也能继承父类的静态方法
+        Animal.info();
+        Dog.info();
+        // wangcai.info(); 静态方法不能通过实例调用
+
+        // 继承内置的构造函数
+        class MoviesList extends Array{
+            constructor(name,...movies){
+                super(...movies);
+                this.name = name;
+            }
+            add(item){
+                this.push(item);
+            }
+            topStar(limit){
+                return this.sort((a,b)=>{return a.star > b.star ? -1 : 1}).slice(0,limit);
+            }
+
+        }
+        let myLove = new MoviesList('我最喜欢的电影',
+            {name : '霸王别姬',star : 9.5},
+            {name : '小黄人',star : 8.9},
+            {name : '肖申克的救赎',star : 9.6},
+            {name : '辛特勒的名单',star : 9.3}
+        )
+    </script>
+</body>
+</html>

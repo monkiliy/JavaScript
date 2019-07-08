@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>异步编程</title>
+</head>
+<body>
+    <script>
+        // promise 1.发送异步请求 2.返回一个对象
+        // new promise() 对象
+        // even loop 事件循环
+        // 回调函数的队列 callbacks stack
+        // promise 异步回调函数的队列，micro stack （ job stack）;micro stack 队列比callbacks队列先执行
+        let objPro = new Promise((resolved)=>{
+            // 执行异步请求
+
+        })
+        objPro 异步请求的返回对象的状态 
+        刚创建时候的对象 objPro = {
+            value : undefined,
+            state : 'pending',
+            onFuiFulled : [],
+            onrejected : []
+        }
+        obj.then(成功回调函数，失败回调函数)，添加成功与失败的回调函数
+        // 请求完成，得到数据后对象发生改变
+        objPro = {
+            value : data 请求回来的数据
+            state : resolved
+            onFuiFulled : [成功回调函数]
+            reject ： [失败回调函数]
+        }
+    </script>
+</body>
+</html>

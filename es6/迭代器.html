@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>迭代器</title>
+</head>
+<body>
+    <p></p>
+    <p></p>
+    <p></p>
+    <script>
+/*         let arr = ['yellow','red','blue'];
+
+        // es5循环的缺点
+        // 1.for循环理解麻烦  i变量管理困难
+        for(var i = 0; i < arr.length; i++ ){
+            console.log(arr[i]);
+        }
+        // 2.forEach不能跳出循环
+        arr.forEach(function(value,index,arr){
+            // if(value === 'red'){
+            //     break; 语法错误不能跳出循环
+            // }
+            console.log(value);
+        })
+        // 3.for in 会循环出自定义的一些属性
+        arr.name = 'liujianghua';
+        for(var i in arr){
+            console.log(arr[i]);
+        } */
+
+        // es5迭代
+        // let iterator = createIterator(arr);
+        // function createIterator(arr){
+        //     var index = 0;
+        //     return {
+        //         next(){
+        //             return index < arr.length ? {value : arr[index++],done:false} : {value : arr[index++],done : true};
+        //         }
+        //     }
+        // }
+
+/*         // 迭代器
+        // 数组迭代
+        let arr = ['yellow','red','blue'];
+        let arrIt = arr[Symbol.iterator]();
+        arrIt.next();
+        // 函数的arguments类数组
+        let argsIt;
+        function fn(a,b,c){
+            argsIt = arguments[Symbol.iterator]();
+        }
+        fn(1,3,6,7,9);
+        console.log(argsIt.next());
+        // dom类数组
+        let op = document.getElementsByTagName('p');
+        let domIt = op[Symbol.iterator]();
+        domIt.next();
+        // 字符串迭代
+        let str = 'liujianghua';
+        let strIt = str[Symbol.iterator]();
+        // 对象没有内置的迭代器
+        let obj = {name : 'ljh'}
+        console.log(obj[Symbol.iterator]); */
+
+/*         // es6 for of
+        // 1.底层通过调用迭代器，数组，类数组都能使用for of
+        function fn(a,b,c){
+            for(var arg of arguments){
+                console.log(arg);
+            }
+        }
+        fn(2,35,6);
+        let op = document.getElementsByTagName('p');
+        for(var dom of op){
+            console.log(dom);
+        }
+        let str = 'liujianghua';
+        for(var s of str){
+            console.log(s);
+        }
+        // 2.语义化明显，可以跳出循环
+        let arr = [1,2,3];
+        for(var num of arr){
+            console.log(num);
+            if(num == 2){
+                break;
+            }
+        } */
+
+        // 数组新增方法
+        // keys values entrise
+        let arr = [1,3,6,7,9];
+        console.log(arr.keys());
+        for(var index of arr.keys()){
+            console.log(index);
+        }
+        for(var value of arr.values()){
+            console.log(value);
+        }
+        for(var prop of arr.entries()){
+            console.log(prop);
+        }
+        // 使用解构赋值
+        for(var [index,value] of arr.entries()){
+            console.log(index,value);
+        }
+    </script>
+</body>
+</html>

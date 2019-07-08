@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组</title>
+</head>
+<body>
+    <p>cc</p>
+    <p>luwei</p>
+    <p>ice</p>
+    <script>
+/*         // 新增的创建数组的方法
+        let arr1 = [1,3,5];
+        let arr2 = new Array(1,3,4,5);
+        let arr3 = new Array(10);//使用new Array()创建数组的时候传入的是一个参数，那么是一个包含了参数位的空数组
+        console.log(arr1,arr2,arr3);
+        // es6
+        let arr4 = Array.of(10);// 使用Array.of() 传入一个参数，会创建长度为1的数组，参数位数组元素
+        let arr5 = Array.of(10,12,'cc');
+        console.log(arr4,arr5);
+
+        let op = document.getElementsByTagName('p');
+        console.log(op)//类数组
+        // op.map((item => {
+        //     return item.textContent;
+        // }))类数组不能使用map方法
+        let arr6 = Array.from(op);//Array.from() 把类数组转换成类数组
+        console.log(arr6);
+
+        // 在DOM中的使用
+        let arr7 = Array.from(op,(item) => {
+            return item.textContent;
+        })
+        console.log(arr7);
+        
+        // 在函数的arguments中使用
+        function add(){
+            return Array.from(arguments).reduce((item,sum) => {
+                return sum += item;
+            },0);
+        }
+        console.log(add(1,2,3,4,5));
+
+        // 数组的拷贝，浅拷贝 数组的这三个方法都可以实现数组的浅拷贝
+        let arr8 = [1,3,5];
+        let arr9 = arr8.concat();
+        let arr10 = arr8.slice();
+        let arr11 = Array.from(arr8); */
+
+/*         // es6数组新增的数据处理方法
+
+        // find findindex
+        let data = [{
+            id : 1,
+            name : 'cc'
+        },{
+            id : 2,
+            name : 'luwei'
+        },{
+            id : 3,
+            name : 'ice'
+        },{
+            id : 3,
+            name : 'xiaochan'
+        }]
+        var arr = data.find((item,index,arr) => {
+            return item.id === 2;
+        })//找到为止 返回元素组成的新数组
+        var arr1 = data.find((item,index,arr)=>{
+            return item.id === 3;
+        })//找到为止 返回元素组成的新数组
+        var arr2 = data.filter((item,index,arr)=>{
+            return item.id === 3;
+        })//找到满足条件的所有的
+        var arr3 = data.findIndex((item,index,arr)=>{
+            return item.id === 3
+        })//找到为止 返回索引
+        console.log(arr);
+        console.log(arr1);
+        console.log(arr2);
+        console.log(arr3); */
+
+/*         // fill
+        let arr = new Array(10);
+        let arr1 = arr.fill(1);//不传参。全部填充 原地算法 不返回新数组
+        console.log(arr);
+        let arr2 = new Array(10);
+        let arr3 = arr2.fill(1,4,9)// 传参 第二个表示其实索引，第三个 终止索引，不包括终止索引这一位 原地算法 不返回新数组
+        console.log(arr2);
+        console.log(arr1);
+        console.log(arr3);
+ */
+        // copyWithin
+        let arr = [1,2,3,4,5,6,7,8,9,10];
+        arr.copyWithin(0,6,9);
+        console.log(arr);
+        let arr1 = [1,2,3,4,5,6,7,8,9,10];
+        arr1.copyWithin(0,3,7);//先截取，后替换
+        console.log(arr1);
+
+        // some every 
+        let ages = [12,36,25,29,18,15,27];
+        let flag = ages.some((item)=>{ return ages >= 18});
+        let flag1 = ages.every((item)=>{ return ages >= 18});
+        console.log(flag);
+        console.log(flag1);
+
+        // includes
+    </script>
+</body>
+</html>

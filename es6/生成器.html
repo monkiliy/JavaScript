@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>生成器</title>
+</head>
+<body>
+    <script>
+        // generator
+        // 普通函数 如果没有return语句 从头往下执行完成
+        /* // generator函数
+        generator函数执行的返回结果是一个iterator对象
+        function * fn(){
+            console.log('ljh')
+            yield 'name';
+            console.log('lyy');
+            yield 'miss';
+            console.log('peopel');
+            yield 'love';
+            console.log('last');
+            yield false;
+        }
+        const gene = fn();
+        console.log(gene); */
+
+/*         function * fn(x){
+            let y = yield (x + 8);
+            let z = yield (y - 3);
+            return (x + y + z);
+            console.log(x);
+        }
+        const res = fn(2);
+        // 通过next函数传参改变yield 语句的返回值
+        console.log(res.next())
+        console.log(res.next(6))
+        console.log(res.next(1)) */
+
+        // 使用for of 来执行next函数
+        function * fn(){
+            console.log('a');
+            yield 'A';
+            console.log('b');
+            yield 'B';
+            console.log('c');
+            yield 'C';
+        }
+        const str = fn();
+        // for(let s of str){//使用for of语句 没有执行语句 相当于使用next函数去执行
+        // }//值打印小写字母 也就是所执行了3次next()语句
+        for(let s of str){//不能重复执行 for of语句
+            console.log('执行' + s);
+            //这里的 s 只是 yield 语句的返回值
+        }
+
+        // 在对象上使用 for of
+        let obj = {a : 1};
+        obj[Symbol.iterator] = function * (){
+            yield 9;
+            yield 3;
+            yield 0;
+        }
+        for(let num of obj){
+            console.log(num);
+        }
+    </script>
+</body>
+</html>
